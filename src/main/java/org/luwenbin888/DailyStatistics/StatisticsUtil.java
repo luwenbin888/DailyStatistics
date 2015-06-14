@@ -105,7 +105,7 @@ public class StatisticsUtil {
 	
 	public static List<Integer> getUserStatistics(int companyId) throws SQLException {
 		String startRowKey = getCompanyStartRowKey(companyId);
-		String query = String.format(Query.GetUsersQuery, startRowKey,getYesterdayRowKey(),AppConfig.WaterCompanyId);
+		String query = String.format(Query.GetUsersQuery, startRowKey,getYesterdayRowKey(),companyId);
 		System.out.println("Beginning to execute query: " + query);
 		
 		ResultSet result = DrillUtil.submitQuery(query);
@@ -116,7 +116,7 @@ public class StatisticsUtil {
 		}
 		result.close();
 		
-		query = String.format(Query.GetUsersQuery, getYesterdayRowKey(),getTodayRowKey(),AppConfig.WaterCompanyId);
+		query = String.format(Query.GetUsersQuery, getYesterdayRowKey(),getTodayRowKey(),companyId);
 		System.out.println("Beginning to execute query: " + query);
 		result = DrillUtil.submitQuery(query);
 		Set<String> yesterdayUsers = new HashSet<String>();

@@ -7,14 +7,16 @@ public class Main {
 	public static void main(String[] args) throws SQLException {
 		
 		if (args == null || args.length != 2) {
-			for (String arg:args) {
-				System.out.println(arg);
-				System.exit(1);
-			}
-			System.out.println("Main -companyId");
+			System.out.println("Wrong params..");
+			System.exit(1);
 		}
 		
 		int companyId = Integer.parseInt(args[1]);
+		
+		if (companyId != AppConfig.WaterCompanyId && companyId != AppConfig.EnergyDrinkCompanyId) {
+			System.out.println("CompanyId not "+companyId + " supported..");
+			System.exit(1);
+		}
 		
 		Statistics stat = new Statistics();
 		
@@ -60,6 +62,6 @@ public class Main {
 		System.out.println("Total user count:"+stat.getTotalUserCnt());
 		
 		System.out.println("Sending email..");
-		EMailUtil.sendEmail(stat, 35);
+		EMailUtil.sendEmail(stat, companyId);
 	}
 }

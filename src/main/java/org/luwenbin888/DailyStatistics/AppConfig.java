@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class AppConfig {
 	public final static int WaterCompanyId = 35;
-	public final static int EnergyDrinkCompanyId = 5210;
+	public final static int EnergyDrinkCompanyId = 5120;
 	
 	public static String DrillJDBCDriverClass = "org.apache.drill.jdbc.Driver";
 	

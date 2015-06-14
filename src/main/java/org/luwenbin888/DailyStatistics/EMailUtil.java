@@ -48,10 +48,10 @@ public class EMailUtil {
             
             String companyName = "";
             switch (companyId) {
-            case 35:
+            case AppConfig.WaterCompanyId:
             	companyName = "Hengda Water";
             	break;
-            case 5120:
+            case AppConfig.EnergyDrinkCompanyId:
             	companyName = "Hengda Energy Drink";
             	break;
             }
