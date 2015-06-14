@@ -4,13 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class StatisticsUtil {
-	public static List<Integer> getScanStatistics() throws SQLException {
-		String query = String.format(Query.GetScannedTagsQuery,getYesterdayRowKey(),getTodayRowKey(),AppConfig.WaterCompanyId);
+	public static List<Integer> getScanStatistics(int companyId) throws SQLException {
+		String query = String.format(Query.GetScannedTagsQuery,getYesterdayRowKey(),getTodayRowKey(),companyId);
 		System.out.println("Beginning to execute query: "+query);
 		ResultSet result = DrillUtil.submitQuery(query);
 		
@@ -36,8 +37,8 @@ public class StatisticsUtil {
 		return scanStatistics;
 	}
 	
-	public static int getEffectiveScanStatistics() throws SQLException {
-		String query = String.format(Query.GetEffectiveScannedTagsQuery, getYesterdayRowKey(),getTodayRowKey(),AppConfig.WaterCompanyId);
+	public static int getEffectiveScanStatistics(int companyId) throws SQLException {
+		String query = String.format(Query.GetEffectiveScannedTagsQuery, getYesterdayRowKey(),getTodayRowKey(),companyId);
 		System.out.println("Beginning to execute query: " + query);
 		
 		ResultSet result = DrillUtil.submitQuery(query);
@@ -59,8 +60,8 @@ public class StatisticsUtil {
 		return enterLotteryTagCnt;
 	}
 	
-	public static int getActiveUserStatistics() throws SQLException {
-		String query = String.format(Query.GetActiveUsersQuery, getYesterdayRowKey(),getTodayRowKey(),AppConfig.WaterCompanyId);
+	public static int getActiveUserStatistics(int companyId) throws SQLException {
+		String query = String.format(Query.GetActiveUsersQuery, getYesterdayRowKey(),getTodayRowKey(),companyId);
 		System.out.println("Beginning to execute query: " + query);
 		
 		ResultSet result = DrillUtil.submitQuery(query);
@@ -77,9 +78,10 @@ public class StatisticsUtil {
 		return activeUserCnt;
 	}
 	
-	public static int getHistoryEffectiveScanStatistics() throws SQLException {
-		String startRowKey = padding(AppConfig.WaterStartDate.getTime());
-		String query = String.format(Query.GetEffectiveScannedTagsQuery, startRowKey,getTodayRowKey(),AppConfig.WaterCompanyId);
+	public static int getHistoryEffectiveScanStatistics(int companyId) throws SQLException {
+		
+		String startRowKey = getCompanyStartRowKey(companyId);
+		String query = String.format(Query.GetEffectiveScannedTagsQuery, startRowKey,getTodayRowKey(),companyId);
 		System.out.println("Beginning to execute query: " + query);
 		
 		ResultSet result = DrillUtil.submitQuery(query);
@@ -101,8 +103,8 @@ public class StatisticsUtil {
 		return enterLotteryTagCnt;
 	}
 	
-	public static List<Integer> getUserStatistics() throws SQLException {
-		String startRowKey = padding(AppConfig.WaterStartDate.getTime());
+	public static List<Integer> getUserStatistics(int companyId) throws SQLException {
+		String startRowKey = getCompanyStartRowKey(companyId);
 		String query = String.format(Query.GetUsersQuery, startRowKey,getYesterdayRowKey(),AppConfig.WaterCompanyId);
 		System.out.println("Beginning to execute query: " + query);
 		
@@ -137,6 +139,23 @@ public class StatisticsUtil {
 		userStat.add(historyUserCnt);
 		
 		return userStat;
+	}
+	
+	private static String getCompanyStartRowKey(int companyId) {
+		Date startDate = null;
+		switch (companyId) {
+		case AppConfig.WaterCompanyId:
+			startDate = AppConfig.WaterStartDate;
+			break;
+		case AppConfig.EnergyDrinkCompanyId:
+			startDate = AppConfig.EnergyDrinkStartDate;
+			break;
+			default:
+				startDate = new Date();
+		}
+		String startRowKey = padding(startDate.getTime());
+		
+		return startRowKey;
 	}
 	
 	private static String getTodayRowKey() {

@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class AppConfig {
-	public static int WaterCompanyId = 35;
-	public static int EnergyDrinkCompanyId = 5210;
+	public final static int WaterCompanyId = 35;
+	public final static int EnergyDrinkCompanyId = 5210;
 	
 	public static String DrillJDBCDriverClass = "org.apache.drill.jdbc.Driver";
 	

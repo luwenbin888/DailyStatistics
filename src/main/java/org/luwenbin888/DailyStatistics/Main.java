@@ -6,9 +6,19 @@ import java.util.List;
 public class Main {
 	public static void main(String[] args) throws SQLException {
 		
+		if (args == null || args.length != 2) {
+			for (String arg:args) {
+				System.out.println(arg);
+				System.exit(1);
+			}
+			System.out.println("Main -companyId");
+		}
+		
+		int companyId = Integer.parseInt(args[1]);
+		
 		Statistics stat = new Statistics();
 		
-		List<Integer> scanStatistics = StatisticsUtil.getScanStatistics();
+		List<Integer> scanStatistics = StatisticsUtil.getScanStatistics(companyId);
 		
 		stat.setTotalScannedTagsCnt(scanStatistics.get(0));
 		stat.setUniqueScannedTagsCnt(scanStatistics.get(1));
@@ -20,18 +30,18 @@ public class Main {
 		
 		
 		
-		int effectiveScanCount = StatisticsUtil.getEffectiveScanStatistics();
+		int effectiveScanCount = StatisticsUtil.getEffectiveScanStatistics(companyId);
 		stat.setEffectiveScannedTagsCnt(effectiveScanCount);
 		//System.out.println("Effective scan count:"+effectiveScanCount);
 		
-		int activeUserCount = StatisticsUtil.getActiveUserStatistics();
+		int activeUserCount = StatisticsUtil.getActiveUserStatistics(companyId);
 		stat.setActiveUserCnt(activeUserCount);
 		
-		int historyEffectiveScanCount = StatisticsUtil.getHistoryEffectiveScanStatistics();
+		int historyEffectiveScanCount = StatisticsUtil.getHistoryEffectiveScanStatistics(companyId);
 		stat.setHistoryEffectiveScannedTagsCnt(historyEffectiveScanCount);
 		
 		
-		List<Integer> userStat = StatisticsUtil.getUserStatistics();
+		List<Integer> userStat = StatisticsUtil.getUserStatistics(companyId);
 		stat.setNewUserCnt(userStat.get(0));
 		stat.setOldUserScanCnt(userStat.get(1));
 		stat.setTotalUserCnt(userStat.get(2));
