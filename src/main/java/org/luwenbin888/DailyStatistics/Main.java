@@ -48,5 +48,8 @@ public class Main {
 		System.out.println("New user count:" + stat.getNewUserCnt());
 		System.out.println("Old user scan count:"+stat.getOldUserScanCnt());
 		System.out.println("Total user count:"+stat.getTotalUserCnt());
+		
+		System.out.println("Sending email..");
+		EMailUtil.sendEmail(stat, 35);
 	}
 }
