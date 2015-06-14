@@ -51,5 +51,11 @@ public class DrillUtil {
 		
 		return result;
 	}
+	
+	public static void closeConnection() throws SQLException {
+		if (drillConn != null && !drillConn.isClosed()) {
+			drillConn.close();
+		}
+	}
 
 }

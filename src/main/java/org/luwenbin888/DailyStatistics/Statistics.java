@@ -9,6 +9,10 @@ public class Statistics {
 	
 	public int activeUserCnt;
 	
+	public int newUserCnt;
+	public int oldUserScanCnt;
+	public int totalUserCnt;
+	
 	public int getTotalScannedTagsCnt() {
 		return totalScannedTagsCnt;
 	}
@@ -42,6 +46,27 @@ public class Statistics {
 	}
 	public void setHistoryEffectiveScannedTagsCnt(int historyEffectiveScannedTagsCnt) {
 		this.historyEffectiveScannedTagsCnt = historyEffectiveScannedTagsCnt;
+	}
+	
+	public int getNewUserCnt() {
+		return newUserCnt;
+	}
+	public void setNewUserCnt(int newUserCnt) {
+		this.newUserCnt = newUserCnt;
+	}
+	
+	public int getOldUserScanCnt() {
+		return oldUserScanCnt;
+	}
+	public void setOldUserScanCnt(int oldUserScanCnt) {
+		this.oldUserScanCnt = oldUserScanCnt;
+	}
+	
+	public int getTotalUserCnt() {
+		return totalUserCnt;
+	}
+	public void setTotalUserCnt(int totalUserCnt) {
+		this.totalUserCnt = totalUserCnt;
 	}
 	
 }

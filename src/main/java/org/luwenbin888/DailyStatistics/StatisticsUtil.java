@@ -101,6 +101,44 @@ public class StatisticsUtil {
 		return enterLotteryTagCnt;
 	}
 	
+	public static List<Integer> getUserStatistics() throws SQLException {
+		String startRowKey = padding(AppConfig.WaterStartDate.getTime());
+		String query = String.format(Query.GetUsersQuery, startRowKey,getYesterdayRowKey(),AppConfig.WaterCompanyId);
+		System.out.println("Beginning to execute query: " + query);
+		
+		ResultSet result = DrillUtil.submitQuery(query);
+		Set<String> historyUsers = new HashSet<String>();
+		
+		while(result.next()) {
+			historyUsers.add(result.getString("pn"));
+		}
+		result.close();
+		
+		query = String.format(Query.GetUsersQuery, getYesterdayRowKey(),getTodayRowKey(),AppConfig.WaterCompanyId);
+		System.out.println("Beginning to execute query: " + query);
+		result = DrillUtil.submitQuery(query);
+		Set<String> yesterdayUsers = new HashSet<String>();
+		
+		while(result.next()) {
+			yesterdayUsers.add(result.getString("pn"));
+		}
+		result.close();
+		
+		int totalYesterdayUsersCnt = yesterdayUsers.size();
+		yesterdayUsers.removeAll(historyUsers);
+		
+		int newUserCnt = yesterdayUsers.size();
+		int oldUserScanCnt = totalYesterdayUsersCnt - newUserCnt;
+		int historyUserCnt = historyUsers.size() + newUserCnt;
+		
+		List<Integer> userStat = new ArrayList<Integer>();
+		userStat.add(newUserCnt);
+		userStat.add(oldUserScanCnt);
+		userStat.add(historyUserCnt);
+		
+		return userStat;
+	}
+	
 	private static String getTodayRowKey() {
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY, 0);
