@@ -54,7 +54,27 @@ public class StatisticsUtil {
 			enterLotteryTagCnt++;
 		}
 		
+		result.close();
+		
 		return enterLotteryTagCnt;
+	}
+	
+	public static int getActiveUserStatistics() throws SQLException {
+		String query = String.format(Query.GetActiveUsersQuery, getYesterdayRowKey(),getTodayRowKey(),AppConfig.WaterCompanyId);
+		System.out.println("Beginning to execute query: " + query);
+		
+		ResultSet result = DrillUtil.submitQuery(query);
+		
+		int activeUserCnt = 0;
+		Set<String> activeUsers = new HashSet<String>();
+		while(result.next()) {
+			activeUsers.add(result.getString("pn"));
+			activeUserCnt++;
+		}
+		
+		result.close();
+		
+		return activeUserCnt;
 	}
 	
 	private static String getTodayRowKey() {

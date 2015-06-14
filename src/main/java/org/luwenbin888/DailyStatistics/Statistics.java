@@ -5,6 +5,8 @@ public class Statistics {
 	public int uniqueScannedTagsCnt;
 	public int effectiveScannedTagsCnt;
 	
+	public int activeUserCnt;
+	
 	public int getTotalScannedTagsCnt() {
 		return totalScannedTagsCnt;
 	}
@@ -26,4 +28,11 @@ public class Statistics {
 		this.effectiveScannedTagsCnt = effectiveScannedTagsCnt;
 	}
 	
+	public int getActiveUserCnt() {
+		return activeUserCnt;
+	}
+	public void setActiveUserCnt(int activeUserCnt) {
+		this.activeUserCnt = activeUserCnt;
+	}
+		
 }

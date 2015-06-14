@@ -23,8 +23,12 @@ public class Main {
 		stat.setEffectiveScannedTagsCnt(effectiveScanCount);
 		//System.out.println("Effective scan count:"+effectiveScanCount);
 		
+		int activeUserCount = StatisticsUtil.getActiveUserStatistics();
+		stat.setActiveUserCnt(activeUserCount);
+		
 		System.out.println("Scan count: "+stat.getTotalScannedTagsCnt());
 		System.out.println("Unique tag scan cnt: "+stat.getUniqueScannedTagsCnt());
 		System.out.println("Effective scan count:" +stat.getEffectiveScannedTagsCnt());
+		System.out.println("Active user count:"+stat.getActiveUserCnt());
 	}
 }
