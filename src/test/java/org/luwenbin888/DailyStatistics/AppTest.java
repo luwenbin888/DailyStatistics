@@ -1,5 +1,7 @@
 package org.luwenbin888.DailyStatistics;
 
+import java.util.Date;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -34,5 +36,15 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
+    }
+    
+    public void testGetStartDate() {
+    	Date waterStartDate = AppConfig.WaterStartDate;
+    	System.out.println(waterStartDate);
+    	
+    	Date energyDrinkStartDate = AppConfig.EnergyDrinkStartDate;
+    	System.out.println(energyDrinkStartDate);
+    	
+    	assertTrue(true);
     }
 }

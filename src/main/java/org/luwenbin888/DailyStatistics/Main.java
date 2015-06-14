@@ -26,9 +26,13 @@ public class Main {
 		int activeUserCount = StatisticsUtil.getActiveUserStatistics();
 		stat.setActiveUserCnt(activeUserCount);
 		
+		int historyEffectiveScanCount = StatisticsUtil.getHistoryEffectiveScanStatistics();
+		stat.setHistoryEffectiveScannedTagsCnt(historyEffectiveScanCount);
+		
 		System.out.println("Scan count: "+stat.getTotalScannedTagsCnt());
 		System.out.println("Unique tag scan cnt: "+stat.getUniqueScannedTagsCnt());
 		System.out.println("Effective scan count:" +stat.getEffectiveScannedTagsCnt());
 		System.out.println("Active user count:"+stat.getActiveUserCnt());
+		System.out.println("History effective scan count:"+stat.getHistoryEffectiveScannedTagsCnt());
 	}
 }

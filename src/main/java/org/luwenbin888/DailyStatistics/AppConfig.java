@@ -1,5 +1,6 @@
 package org.luwenbin888.DailyStatistics;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class AppConfig {
@@ -12,4 +13,20 @@ public class AppConfig {
 	
 	public static Date WaterStartDate = null;
 	public static Date EnergyDrinkStartDate = null;
+	
+	static {
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, 4);
+		cal.set(Calendar.DAY_OF_MONTH, 16);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		WaterStartDate = cal.getTime();
+		
+		cal.set(Calendar.MONTH, 5);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		EnergyDrinkStartDate = cal.getTime();
+		
+	}
 }

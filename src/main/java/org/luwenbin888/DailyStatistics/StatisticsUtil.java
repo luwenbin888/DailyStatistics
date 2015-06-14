@@ -77,6 +77,30 @@ public class StatisticsUtil {
 		return activeUserCnt;
 	}
 	
+	public static int getHistoryEffectiveScanStatistics() throws SQLException {
+		String startRowKey = padding(AppConfig.WaterStartDate.getTime());
+		String query = String.format(Query.GetEffectiveScannedTagsQuery, startRowKey,getTodayRowKey(),AppConfig.WaterCompanyId);
+		System.out.println("Beginning to execute query: " + query);
+		
+		ResultSet result = DrillUtil.submitQuery(query);
+		
+		Set<String> enterLotteryTags = new HashSet<String>();
+		
+		int enterLotteryTagCnt = 0;
+		
+		while(result.next()) {
+			
+			//System.out.println(result.getString("hid"));
+			enterLotteryTags.add(result.getString("hid"));
+			
+			enterLotteryTagCnt++;
+		}
+		
+		result.close();
+		
+		return enterLotteryTagCnt;
+	}
+	
 	private static String getTodayRowKey() {
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY, 0);
