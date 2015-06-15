@@ -30,10 +30,6 @@ public class AppConfig {
 		
 	}
 	
-	/*
-	public static String EmailRecipient = "yi.dai.@sao.so";
-	public static String EmailCC = "steve.liu@sao.so,wenbin.lu@sao.so,jay.jia@sao.so,pitar.leung@sao.so,da.zhang@sao.so,pudan@sao.so";
-	*/
 	public static String EmailRecipient = "wenbin.lu@sao.so";
 	public static String EmailCC = "luwenbin1016@126.com";
 	public static String EmailSubject = "%s %s Statistics";
