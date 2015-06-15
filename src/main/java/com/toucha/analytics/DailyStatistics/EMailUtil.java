@@ -1,4 +1,4 @@
-package org.luwenbin888.DailyStatistics;
+package com.toucha.analytics.DailyStatistics;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

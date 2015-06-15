@@ -1,4 +1,4 @@
-package org.luwenbin888.DailyStatistics;
+package com.toucha.analytics.DailyStatistics;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -27,17 +27,16 @@ public class AppConfig {
 		cal.set(Calendar.MONTH, 5);
 		cal.set(Calendar.DAY_OF_MONTH, 1);
 		EnergyDrinkStartDate = cal.getTime();
-		
 	}
 	
-	
+	/*
 	public static String EmailRecipient = "yi.dai.@sao.so";
 	public static String EmailCC = "steve.liu@sao.so,da.zhang@sao.so,wenbin.lu@sao.so,jay.jia@sao.so,pitar.leung@sao.so,philip.luo@sao.so,pudan@sao.so";
+	*/
 	
-	/*
 	public static String EmailRecipient = "wenbin.lu@sao.so";
 	public static String EmailCC = "luwenbin1016@126.com";
-	*/
+	
 	public static String EmailSubject = "%s %s Statistics";
-	public static String EmailContent = "This is auto generated email.\n\nNew user scan count:%s\nOld user scan count:%s\nAccumulated user count:%s\nTotal scan count:%s\nUnique tag scan count:%s\nEffective scan count:%s\nAccumulated effective scan count:%s\nActive user (>=2) count:%s\n";
+	public static String EmailContent = "Auto generated statistics\n\nNew user scan count:%s\nOld user scan count:%s\nAccumulated user count:%s\nTotal scan count:%s\nUnique tag scan count:%s\nEffective scan count:%s\nAccumulated effective scan count:%s\nActive user (>=2) count:%s\n";
 }

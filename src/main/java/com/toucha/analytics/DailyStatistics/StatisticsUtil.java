@@ -1,4 +1,4 @@
-package org.luwenbin888.DailyStatistics;
+package com.toucha.analytics.DailyStatistics;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,26 +11,21 @@ import java.util.Set;
 
 public class StatisticsUtil {
 	public static List<Integer> getScanStatistics(int companyId) throws SQLException {
-		String query = String.format(Query.GetScannedTagsQuery,getYesterdayRowKey(),getTodayRowKey(),companyId);
+		String query = String.format(Query.GetScannedTagsCountQuery,getYesterdayRowKey(),getTodayRowKey(),companyId);
 		System.out.println("Beginning to execute query: "+query);
 		ResultSet result = DrillUtil.submitQuery(query);
 		
-		
-		Set<String> scannedTags = new HashSet<String>();
-		
 		int totalScannedTagsCnt = 0;
+		int distinctTagsScannedCnt = 0;
 		
-		while(result.next()) {
-			
-			//System.out.println(result.getString("hid"));
-			scannedTags.add(result.getString("hid"));
-			
-			totalScannedTagsCnt++;
+		if (result.next()) {
+			totalScannedTagsCnt = result.getInt("scan1");
+			distinctTagsScannedCnt = result.getInt("scan2");
 		}
 		
 		List<Integer> scanStatistics = new ArrayList<Integer>();
 		scanStatistics.add(totalScannedTagsCnt);
-		scanStatistics.add(scannedTags.size());
+		scanStatistics.add(distinctTagsScannedCnt);
 		
 		result.close();
 		
@@ -38,21 +33,15 @@ public class StatisticsUtil {
 	}
 	
 	public static int getEffectiveScanStatistics(int companyId) throws SQLException {
-		String query = String.format(Query.GetEffectiveScannedTagsQuery, getYesterdayRowKey(),getTodayRowKey(),companyId);
+		String query = String.format(Query.GetEffectiveScannedTagsCountQuery, getYesterdayRowKey(),getTodayRowKey(),companyId);
 		System.out.println("Beginning to execute query: " + query);
 		
 		ResultSet result = DrillUtil.submitQuery(query);
 		
-		Set<String> enterLotteryTags = new HashSet<String>();
-		
 		int enterLotteryTagCnt = 0;
 		
-		while(result.next()) {
-			
-			//System.out.println(result.getString("hid"));
-			enterLotteryTags.add(result.getString("hid"));
-			
-			enterLotteryTagCnt++;
+		if (result.next()) {
+			enterLotteryTagCnt = result.getInt("cnt");
 		}
 		
 		result.close();
@@ -61,16 +50,15 @@ public class StatisticsUtil {
 	}
 	
 	public static int getActiveUserStatistics(int companyId) throws SQLException {
-		String query = String.format(Query.GetActiveUsersQuery, getYesterdayRowKey(),getTodayRowKey(),companyId);
+		String query = String.format(Query.GetActiveUsersCountQuery, getYesterdayRowKey(),getTodayRowKey(),companyId);
 		System.out.println("Beginning to execute query: " + query);
 		
 		ResultSet result = DrillUtil.submitQuery(query);
 		
 		int activeUserCnt = 0;
-		Set<String> activeUsers = new HashSet<String>();
-		while(result.next()) {
-			activeUsers.add(result.getString("pn"));
-			activeUserCnt++;
+		
+		if (result.next()) {
+			activeUserCnt = result.getInt("cnt");
 		}
 		
 		result.close();
@@ -81,21 +69,16 @@ public class StatisticsUtil {
 	public static int getHistoryEffectiveScanStatistics(int companyId) throws SQLException {
 		
 		String startRowKey = getCompanyStartRowKey(companyId);
-		String query = String.format(Query.GetEffectiveScannedTagsQuery, startRowKey,getTodayRowKey(),companyId);
+		String query = String.format(Query.GetEffectiveScannedTagsCountQuery, startRowKey,getTodayRowKey(),companyId);
 		System.out.println("Beginning to execute query: " + query);
 		
 		ResultSet result = DrillUtil.submitQuery(query);
 		
-		Set<String> enterLotteryTags = new HashSet<String>();
-		
 		int enterLotteryTagCnt = 0;
 		
-		while(result.next()) {
+		if (result.next()) {
 			
-			//System.out.println(result.getString("hid"));
-			enterLotteryTags.add(result.getString("hid"));
-			
-			enterLotteryTagCnt++;
+			enterLotteryTagCnt = result.getInt("cnt");
 		}
 		
 		result.close();

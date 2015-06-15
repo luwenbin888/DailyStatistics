@@ -1,4 +1,4 @@
-package org.luwenbin888.DailyStatistics;
+package com.toucha.analytics.DailyStatistics;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

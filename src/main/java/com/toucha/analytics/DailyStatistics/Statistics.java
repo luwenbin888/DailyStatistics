@@ -1,4 +1,4 @@
-package org.luwenbin888.DailyStatistics;
+package com.toucha.analytics.DailyStatistics;
 
 public class Statistics {
 	public int totalScannedTagsCnt;
