@@ -15,7 +15,7 @@ import javax.mail.internet.MimeMessage;
 public class EMailUtil {
 	public static void sendEmail(Statistics stat, int companyId) {
 		final String username = "luwenbin1016@126.com";
-        final String password = "ab022803";
+        final String password = "";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
