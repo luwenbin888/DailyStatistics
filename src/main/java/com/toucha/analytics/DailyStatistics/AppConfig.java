@@ -29,14 +29,17 @@ public class AppConfig {
 		EnergyDrinkStartDate = cal.getTime();
 	}
 	
-	public static String EmailRecipient = "yi.dai.@sao.so";
-	public static String EmailCC = "steve.liu@sao.so,da.zhang@sao.so,wenbin.lu@sao.so,jay.jia@sao.so,pitar.leung@sao.so,philip.luo@sao.so,pudan@sao.so";
-	
 	/*
-	public static String EmailRecipient = "wenbin.lu@sao.so";
-	public static String EmailCC = "luwenbin1016@126.com";
+	public static String EmailRecipient = "yi.dai@sao.so";
+	public static String EmailCC = "steve.liu@sao.so,da.zhang@sao.so,wenbin.lu@sao.so,jay.jia@sao.so,pitar.leung@sao.so,philip.luo@sao.so,pudan@sao.so";
 	*/
 	
+	
+	public static String EmailRecipient = "wenbin.lu@sao.so";
+    public static String EmailCC = "luwenbin1016@126.com";
+	
+	
+	
 	public static String EmailSubject = "%s %s Statistics";
-	public static String EmailContent = "Auto generated statistics\n\nNew user scan count:%s\nOld user scan count:%s\nAccumulated user count:%s\nTotal scan count:%s\nUnique tag scan count:%s\nEffective scan count:%s\nAccumulated effective scan count:%s\nActive user (>=2) count:%s\n";
+	public static String EmailContent = "Auto generated statistics\n\nNew user scan count:%s\nOld user scan count:%s\nAccumulated user count:%s\nTotal scan count:%s\nUnique tag scan count:%s\nEffective scan count:%s\nAccumulated effective scan count:%s\nActive user (>=2) count:%s\nHistory active user (>=2) count:%s\nPhone Topup Times:%s\nPhone Topup Amount:%s\nUnionPay Times:%s\nUnionPay Amount:%s\nTotal Times:%s\nTotal Amount:%s\n";
 }

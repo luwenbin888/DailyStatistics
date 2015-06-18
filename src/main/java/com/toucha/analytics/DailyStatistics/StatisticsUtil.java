@@ -66,6 +66,25 @@ public class StatisticsUtil {
 		return activeUserCnt;
 	}
 	
+	public static int getHistoryActiveUserStatistics(int companyId) throws SQLException {
+		
+		String startRowKey = getCompanyStartRowKey(companyId);
+		String query = String.format(Query.GetActiveUsersCountQuery, startRowKey,getTodayRowKey(),companyId);
+		System.out.println("Beginning to execute query: " + query);
+		
+		ResultSet result = DrillUtil.submitQuery(query);
+		
+		int activeUserCnt = 0;
+		
+		if (result.next()) {
+			activeUserCnt = result.getInt("cnt");
+		}
+		
+		result.close();
+		
+		return activeUserCnt;
+	}
+	
 	public static int getHistoryEffectiveScanStatistics(int companyId) throws SQLException {
 		
 		String startRowKey = getCompanyStartRowKey(companyId);

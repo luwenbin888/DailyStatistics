@@ -9,6 +9,7 @@ public class Statistics {
 	
 	public int activeUserCnt;
 	
+	public int historyActiveUserCnt;
 	public int newUserCnt;
 	public int oldUserScanCnt;
 	public int totalUserCnt;
@@ -67,6 +68,13 @@ public class Statistics {
 	}
 	public void setTotalUserCnt(int totalUserCnt) {
 		this.totalUserCnt = totalUserCnt;
+	}
+	
+	public int getHistoryActiveUserCnt() {
+		return historyActiveUserCnt;
+	}
+	public void setHistoryActiveUserCnt(int historyActiveUserCnt) {
+		this.historyActiveUserCnt = historyActiveUserCnt;
 	}
 	
 }
